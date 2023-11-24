@@ -5,7 +5,7 @@
 module.exports = {
   apps: [
     {
-      name: 'sseramemes',
+      name: 'soseramemes',
       script: 'npm',
       args: 'start',
       ignore_watch: ['temp*'],

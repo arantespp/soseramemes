@@ -31,9 +31,31 @@
 
 Once you have all the tokens, you can run the bot locally with `npm run dev`.
 
+## Development
+
+To run the bot locally and watch for changes, run:
+
+```bash
+npm run dev
+```
+
+To run the bot locally without watching for changes, run:
+
+```bash
+npm run start
+```
+
+## Test
+
+To run the tests, run:
+
+```bash
+npm test
+```
+
 ## Server
 
-We use PM2 to run and keep sseramemes online. To start the server, run:
+We use PM2 to run and keep soseramemes online. To start the server, run:
 
 ```bash
 npm server:start

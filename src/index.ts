@@ -1,56 +1,39 @@
-// eslint-disable-next-line no-console
-console.log('oi');
+import { Client, Events, GatewayIntentBits, TextChannel } from 'discord.js';
+import { addEmojisToMessage } from './Discord/addEmojisToMessage';
+import { handleMemeVoting } from './Discord/handleMemeVoting';
+import { readyMessage } from './Discord/readyMessage';
+import 'dotenv/config';
 
-// import 'dotenv/config';
-// import { Client, GatewayIntentBits, Events, TextChannel } from 'discord.js';
-// import { handleMemeVoting, isMeme } from './handleMemeVoting';
-// import { readyMessage } from './readyMessage';
-// import { EMOJIS_POINTS } from './score';
-// import { listenToMentions } from './twitterMentions';
-// import { addMemeTextManual } from './image-scripts';
+export const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+    /**
+     * https://stackoverflow.com/a/73249884/8786986
+     */
+    GatewayIntentBits.MessageContent,
+  ],
+});
 
-// export const client = new Client({
-//   intents: [
-//     GatewayIntentBits.Guilds,
-//     GatewayIntentBits.GuildMessages,
-//     GatewayIntentBits.GuildMessageReactions,
-//     /**
-//      * https://stackoverflow.com/a/73249884/8786986
-//      */
-//     GatewayIntentBits.MessageContent,
-//   ],
-// });
+client.once(Events.ClientReady, async () => {
+  console.log(readyMessage);
 
-// client.once(Events.ClientReady, async () => {
-//   console.log(readyMessage);
+  if (!process.env.DISCORD_MEMES_CHANNEL_ID) {
+    throw new Error('Missing DISCORD_MEMES_CHANNEL_ID env var');
+  }
 
-//   const memeChannel = client.channels.cache.get(
-//     process.env.DISCORD_MEMES_CHANNEL_ID,
-//   ) as TextChannel;
+  const memeChannel = client.channels.cache.get(
+    process.env.DISCORD_MEMES_CHANNEL_ID
+  ) as TextChannel;
 
-//   await memeChannel.send(readyMessage);
-//   await memeChannel.send(addMemeTextManual);
-//   // try {
-//   //   await listenToMentions(memeChannel);
-//   // } catch (err) {
-//   //   const msg = `☹️ Error listening to Twitter mentions: ${err}`;
-//   //   await memeChannel.send(msg);
-//   // }
-// });
+  await memeChannel.send(readyMessage);
+});
 
-// client.on(Events.MessageCreate, async (message) => {
-//   /**
-//    * Add all emojis to the message to make easy the voting.
-//    */
-//   if (await isMeme(message)) {
-//     await Promise.all(
-//       Object.keys(EMOJIS_POINTS).map((emoji) => message.react(emoji)),
-//     );
-//   }
-// });
+client.on(Events.MessageCreate, addEmojisToMessage);
 
-// client.on(Events.MessageReactionAdd, handleMemeVoting);
+client.on(Events.MessageReactionAdd, handleMemeVoting);
 
-// client.on(Events.MessageReactionAdd, handleMemeVoting);
+client.on(Events.MessageReactionAdd, handleMemeVoting);
 
-// client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
