@@ -1,5 +1,7 @@
 # Só Será Memes
 
+![Só Será Memes logo](./logo.jpg).
+
 ## How to setup soseramemes
 
 1. Create a bot and retrieve the token. [How to Get a Discord Bot Token](https://www.writebots.com/discord-bot-token/). It should have the following permissions:
