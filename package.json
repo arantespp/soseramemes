@@ -1,0 +1,25 @@
+{
+  "name": "soseramemes",
+  "version": "0.0.1",
+  "contributors": [
+    "Pedro Arantes <pedro@arantespp.com> (https://arantespp.com/contact)"
+  ],
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "prepare": "husky install",
+    "server:logs": "pm2 logs soseramemes --lines 200",
+    "server:start": "pm2 start ecosystem.config.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@ttoss/config": "^1.31.1",
+    "@ttoss/eslint-config": "^1.22.5",
+    "eslint": "^8.54.0",
+    "husky": "^8.0.3",
+    "lint-staged": "15.1.0",
+    "prettier": "^3.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}
