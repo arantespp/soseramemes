@@ -18,5 +18,19 @@ module.exports = {
        */
       watch: true,
     },
+    {
+      name: 'github-webhook',
+      script: 'node',
+      args: 'github-webhook.js',
+      ignore_watch: ['temp*'],
+      /**
+       * Add time to the logs
+       */
+      time: true,
+      /**
+       * Watch changes to "deploy" the bot
+       */
+      watch: true,
+    },
   ],
 };

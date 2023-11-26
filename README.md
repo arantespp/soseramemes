@@ -80,3 +80,9 @@ To check PM2 status, run:
 ```bash
 pm2 status
 ```
+
+### Deploy
+
+To configure the deploy, add the following variable to the `.env` file on the server:
+
+- `WEBHOOK_SECRET`: The secret used to verify the webhook.
