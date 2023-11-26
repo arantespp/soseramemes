@@ -53,10 +53,10 @@ export const handleMemeVoting = async (
       throw new Error('Tweet failed');
     }
 
-    await message.message.channel.send(`🚀 ${tweet.tweetUrl}`);
+    await message.message.reply(`🚀 ${tweet.tweetUrl}`);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error(JSON.stringify(error, null, 2));
-    await message.message.channel.send(`🚨 Error: ${error.message}`);
+    await message.message.reply(`🚨 Error: ${error.message}`);
   }
 };
