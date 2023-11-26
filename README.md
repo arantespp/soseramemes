@@ -57,22 +57,39 @@ npm test
 
 ## Server
 
-We use PM2 to run and keep soseramemes online. To start the server, run:
+We use PM2 to run and keep soseramemes online. Provisioning the server:
 
 ```bash
-npm server:start
+sudo apt update
+sudo apt install curl
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.bashrc
+nvm install node 20 # As of November 2023
+```
+
+Cloning the project via HTTPS:
+
+```bash
+git clone https://github.com/arantespp/soseramemes.git
+```
+
+Now, to start the server, run:
+
+```bash
+npm install
+npm run server:start
 ```
 
 To check the logs, run:
 
 ```bash
-npm server:logs
+npm run server:logs
 ```
 
 If you want to check only error logs, run:
 
 ```bash
-npm server:logs --err
+npm run server:logs --err
 ```
 
 To check PM2 status, run:
